@@ -15,7 +15,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
           <div className="relative">
             <div className="absolute inset-0 blur-3xl bg-[#D4AF37]/20 rounded-full scale-150" />
             <img 
-              src="https://d64gsuwffb70l.cloudfront.net/68f918226b8d8a8ac140a61f_1764926075615_13190c42.png" 
+              src="https://files.catbox.moe/78r0ul.png" 
               alt="West Capital Business Ecosystem" 
               className="relative w-80 h-80 md:w-96 md:h-96 object-contain"
             />
