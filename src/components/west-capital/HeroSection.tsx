@@ -1,10 +1,15 @@
 import React from 'react';
+import { Play } from 'lucide-react';
 
 interface HeroSectionProps {
   onNavigate: (section: string) => void;
+  onPlayVideo: () => void;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
+const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, onPlayVideo }) => {
+  const videoId = 'RQun6QEimRE';
+  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+
   return (
     <section className="min-h-screen bg-gradient-to-b from-white via-sky-50/50 to-white relative flex items-center justify-center overflow-hidden">
       {/* Background decorative elements */}
@@ -21,14 +26,53 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
       }} />
       
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-20">
+        {/* Video Thumbnail with Play Button */}
         <div className="mb-8 flex justify-center">
-          <div className="relative">
-            <div className="absolute inset-0 blur-3xl bg-sky-400/20 rounded-full scale-150" />
-            <img 
-              src="https://files.catbox.moe/dimg4p.png" 
-              alt="West Capital Business Ecosystem" 
-              className="relative w-64 h-64 md:w-80 md:h-80 object-contain drop-shadow-2xl"
-            />
+          <div className="relative group cursor-pointer" onClick={onPlayVideo}>
+            {/* Glow effect */}
+            <div className="absolute -inset-4 blur-2xl bg-sky-400/30 rounded-3xl scale-105 group-hover:bg-sky-400/40 transition-all duration-500" />
+            
+            {/* Video thumbnail container */}
+            <div className="relative w-full max-w-2xl aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-sky-500/30 border-2 border-white/50 group-hover:border-sky-400/50 transition-all duration-500 group-hover:scale-[1.02]">
+              {/* Thumbnail image */}
+              <img 
+                src={thumbnailUrl}
+                alt="West Capital Tanıtım Videosu" 
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  // Fallback to hqdefault if maxresdefault doesn't exist
+                  (e.target as HTMLImageElement).src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                }}
+              />
+              
+              {/* Overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-slate-900/20 group-hover:from-slate-900/50 transition-all duration-300" />
+              
+              {/* Play button */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="relative">
+                  {/* Pulse animation ring */}
+                  <div className="absolute inset-0 bg-sky-500/30 rounded-full animate-ping" style={{ animationDuration: '2s' }} />
+                  <div className="absolute -inset-4 bg-sky-500/20 rounded-full animate-pulse" />
+                  
+                  {/* Play button */}
+                  <div className="relative w-20 h-20 md:w-24 md:h-24 bg-white/95 rounded-full flex items-center justify-center shadow-2xl group-hover:bg-sky-500 group-hover:scale-110 transition-all duration-300">
+                    <Play className="w-8 h-8 md:w-10 md:h-10 text-sky-600 group-hover:text-white ml-1 transition-colors" fill="currentColor" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Video label */}
+              <div className="absolute bottom-4 left-4 flex items-center gap-2">
+                <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+                <span className="text-white/90 text-sm font-medium">Tanıtım Videosu</span>
+              </div>
+
+              {/* Duration badge */}
+              <div className="absolute bottom-4 right-4 px-2 py-1 bg-black/70 rounded text-white/90 text-xs font-medium">
+                Videoyu İzle
+              </div>
+            </div>
           </div>
         </div>
         
