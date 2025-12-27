@@ -82,7 +82,26 @@ const AppLayout: React.FC = () => {
         <div ref={el => sectionsRef.current['home'] = el}>
           <HeroSection onNavigate={handleNavigate} onPlayVideo={handlePlayVideo} />
         </div>
-
+        <ServiceCategories onNavigate={handleNavigate} />
+        <StatsSection />
+        <div ref={el => sectionsRef.current['offices'] = el}>
+          <OfficeServices onLoginRequired={handleLoginRequired} />
+        </div>
+        <FeaturesSection />
+        <GallerySection />
+        <div ref={el => sectionsRef.current['ecosystem'] = el}>
+          <EcosystemSection />
+        </div>
+        <div ref={el => sectionsRef.current['advisory'] = el}>
+          <AdvisorySection />
+        </div>
+        <TeamSection />
+        <TestimonialsSection />
+        <PartnersSection />
+        <CTASection onNavigate={handleNavigate} />
+        <div ref={el => sectionsRef.current['contact'] = el}>
+          <ContactSection />
+        </div>
       </main>
       
       <Footer onNavigate={handleNavigate} />
