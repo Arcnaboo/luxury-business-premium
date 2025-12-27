@@ -75,8 +75,7 @@ const AppLayout: React.FC = () => {
           animation: slideIn 0.4s ease-out forwards;
         }
       `}</style>
-      
-      <Header activeSection={activeSection} onNavigate={handleNavigate} />
+
       
       <main>
         <div ref={el => sectionsRef.current['home'] = el}>
@@ -85,10 +84,7 @@ const AppLayout: React.FC = () => {
 
       </main>
       
-      <Footer onNavigate={handleNavigate} />
-      
-      {/* Global Login Modal for booking system */}
-      <LoginModal isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} />
+
       
       {/* Video Player - Shows in theatre mode on load */}
       {showVideo && (
