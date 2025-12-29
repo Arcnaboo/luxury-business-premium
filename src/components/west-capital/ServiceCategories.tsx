@@ -39,16 +39,13 @@ const categories = [
 
 const ServiceCategories: React.FC<ServiceCategoriesProps> = ({ onNavigate }) => {
   return (
-    <section className="py-24 bg-slate-50">
+    <section className="py-24 bg-[#0B0B0B]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-serif text-3xl md:text-4xl text-slate-800 font-bold mb-4">
-            Öne Çıkan <span className="text-sky-600">Hizmetler</span>
+          <h2 className="font-serif text-3xl md:text-4xl text-[#D4AF37] font-bold mb-4">
+            Öne Çıkan Hizmetler
           </h2>
-          <p className="text-slate-500 max-w-2xl mx-auto">
-            İş dünyasının tüm ihtiyaçlarını tek çatı altında karşılayan kapsamlı hizmet portföyümüz
-          </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-sky-400 to-sky-600 mx-auto mt-6 rounded-full" />
+          <div className="w-24 h-0.5 bg-[#D4AF37] mx-auto" />
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -56,14 +53,14 @@ const ServiceCategories: React.FC<ServiceCategoriesProps> = ({ onNavigate }) => 
             <div
               key={cat.id}
               onClick={() => onNavigate(cat.id)}
-              className="group p-8 bg-white border border-sky-100 rounded-2xl hover:border-sky-300 hover:shadow-xl hover:shadow-sky-500/10 transition-all duration-500 cursor-pointer"
+              className="group p-8 bg-[#0A1F1A] border border-[#D4AF37]/20 hover:border-[#D4AF37] transition-all duration-500 cursor-pointer"
             >
-              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-sky-50 to-sky-100 flex items-center justify-center text-sky-600 mb-6 group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-sky-500 group-hover:to-sky-600 group-hover:text-white transition-all duration-300">
+              <div className="text-[#D4AF37] mb-6 group-hover:scale-110 transition-transform duration-300">
                 {cat.icon}
               </div>
-              <h3 className="font-serif text-xl text-slate-800 font-bold mb-3 group-hover:text-sky-600 transition-colors">{cat.title}</h3>
-              <p className="text-slate-500 leading-relaxed">{cat.description}</p>
-              <div className="mt-6 flex items-center text-sky-600 text-sm font-medium">
+              <h3 className="font-serif text-xl text-[#D4AF37] font-bold mb-3">{cat.title}</h3>
+              <p className="text-white/70 leading-relaxed">{cat.description}</p>
+              <div className="mt-6 flex items-center text-[#D4AF37] text-sm">
                 <span>Detayları İncele</span>
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
