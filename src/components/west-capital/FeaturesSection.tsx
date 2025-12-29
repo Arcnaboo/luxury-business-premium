@@ -11,24 +11,29 @@ const features = [
 
 const FeaturesSection: React.FC = () => {
   return (
-    <section className="py-24 bg-[#0B0B0B]">
+    <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-serif text-3xl md:text-4xl text-[#D4AF37] font-bold mb-4">Neden West Capital?</h2>
-          <p className="text-white/70 max-w-2xl mx-auto">Üstün hizmet kalitesi ve profesyonel yaklaşım</p>
-          <div className="w-24 h-0.5 bg-[#D4AF37] mx-auto mt-6" />
+          <span className="inline-block px-4 py-1.5 bg-sky-100 text-sky-600 text-sm font-medium rounded-full mb-4">
+            Avantajlarımız
+          </span>
+          <h2 className="font-serif text-3xl md:text-4xl text-slate-800 font-bold mb-4">
+            Neden <span className="text-sky-600">West Capital?</span>
+          </h2>
+          <p className="text-slate-500 max-w-2xl mx-auto">Üstün hizmet kalitesi ve profesyonel yaklaşım</p>
+          <div className="w-24 h-1 bg-gradient-to-r from-sky-400 to-sky-600 mx-auto mt-6 rounded-full" />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, idx) => (
-            <div key={idx} className="p-6 bg-[#0A1F1A] border border-[#D4AF37]/20 hover:border-[#D4AF37] transition-all duration-500 group">
-              <div className="w-12 h-12 border border-[#D4AF37] flex items-center justify-center mb-4 group-hover:bg-[#D4AF37] transition-all">
-                <svg className="w-6 h-6 text-[#D4AF37] group-hover:text-[#0A1F1A] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div key={idx} className="p-6 bg-slate-50 border border-slate-200 rounded-2xl hover:border-sky-300 hover:shadow-xl hover:shadow-sky-500/10 transition-all duration-500 group">
+              <div className="w-14 h-14 bg-sky-50 rounded-xl flex items-center justify-center mb-4 group-hover:bg-gradient-to-br group-hover:from-sky-500 group-hover:to-sky-600 transition-all">
+                <svg className="w-7 h-7 text-sky-600 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={feature.icon} />
                 </svg>
               </div>
-              <h3 className="font-serif text-lg text-[#D4AF37] font-bold mb-2">{feature.title}</h3>
-              <p className="text-white/70 text-sm">{feature.desc}</p>
+              <h3 className="font-serif text-lg text-slate-800 font-bold mb-2 group-hover:text-sky-600 transition-colors">{feature.title}</h3>
+              <p className="text-slate-500 text-sm">{feature.desc}</p>
             </div>
           ))}
         </div>

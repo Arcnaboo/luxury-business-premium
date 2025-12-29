@@ -42,53 +42,97 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={onClose}>
-      <div className="bg-[#0A1F1A] border border-[#D4AF37] max-w-md w-full p-8" onClick={e => e.stopPropagation()}>
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="font-serif text-2xl text-[#D4AF37] font-bold">
+    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden" onClick={e => e.stopPropagation()}>
+        {/* Header */}
+        <div className="bg-gradient-to-r from-sky-500 to-sky-600 px-8 py-6">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-3">
+              <img src="https://files.catbox.moe/ltc1ta.png" alt="West Capital" className="h-8 w-8 object-contain" />
+              <span className="font-serif text-white text-lg font-bold">WEST CAPITAL</span>
+            </div>
+            <button onClick={onClose} className="text-white/80 hover:text-white transition-colors">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <h2 className="text-white text-xl font-semibold mt-4">
             {mode === 'login' ? 'VIP Üye Girişi' : mode === 'register' ? 'Üye Kaydı' : 'Şifre Sıfırla'}
           </h2>
-          <button onClick={onClose} className="text-white/60 hover:text-[#D4AF37]">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+          <p className="text-white/80 text-sm mt-1">
+            {mode === 'login' ? 'Hesabınıza giriş yapın' : mode === 'register' ? 'Yeni hesap oluşturun' : 'Şifrenizi sıfırlayın'}
+          </p>
         </div>
 
-        {error && <div className="mb-4 p-3 bg-red-500/20 border border-red-500 text-red-300 text-sm">{error}</div>}
-        {success && <div className="mb-4 p-3 bg-green-500/20 border border-green-500 text-green-300 text-sm">{success}</div>}
-
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {mode === 'register' && (
-            <input type="text" placeholder="Ad Soyad" value={fullName} onChange={e => setFullName(e.target.value)} required
-              className="w-full px-4 py-3 bg-transparent border border-[#D4AF37]/30 text-white placeholder-white/50 focus:border-[#D4AF37] focus:outline-none" />
-          )}
-          <input type="email" placeholder="E-posta" value={email} onChange={e => setEmail(e.target.value)} required
-            className="w-full px-4 py-3 bg-transparent border border-[#D4AF37]/30 text-white placeholder-white/50 focus:border-[#D4AF37] focus:outline-none" />
-          {mode !== 'reset' && (
-            <input type="password" placeholder="Şifre" value={password} onChange={e => setPassword(e.target.value)} required
-              className="w-full px-4 py-3 bg-transparent border border-[#D4AF37]/30 text-white placeholder-white/50 focus:border-[#D4AF37] focus:outline-none" />
-          )}
-          {mode === 'login' && (
-            <div className="flex items-center justify-between">
-              <label className="flex items-center gap-2 text-white/70 text-sm cursor-pointer">
-                <input type="checkbox" checked={remember} onChange={e => setRemember(e.target.checked)} className="accent-[#D4AF37]" />
-                Beni hatırla
-              </label>
-              <button type="button" onClick={() => setMode('reset')} className="text-[#D4AF37] text-sm hover:underline">Şifremi unuttum</button>
+        {/* Form */}
+        <div className="p-8">
+          {error && (
+            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm flex items-center gap-2">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {error}
             </div>
           )}
-          <button type="submit" disabled={loading} className="w-full py-3 bg-[#D4AF37] text-[#0A1F1A] font-semibold hover:bg-[#D4AF37]/90 disabled:opacity-50">
-            {loading ? 'Yükleniyor...' : mode === 'login' ? 'Giriş Yap' : mode === 'register' ? 'Kayıt Ol' : 'Şifre Sıfırla'}
-          </button>
-        </form>
-
-        <div className="mt-6 text-center text-white/60 text-sm">
-          {mode === 'login' ? (
-            <>Hesabınız yok mu? <button onClick={() => setMode('register')} className="text-[#D4AF37] hover:underline">Kayıt olun</button></>
-          ) : (
-            <>Hesabınız var mı? <button onClick={() => setMode('login')} className="text-[#D4AF37] hover:underline">Giriş yapın</button></>
+          {success && (
+            <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-xl text-green-600 text-sm flex items-center gap-2">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {success}
+            </div>
           )}
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {mode === 'register' && (
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1.5">Ad Soyad</label>
+                <input type="text" placeholder="Adınız Soyadınız" value={fullName} onChange={e => setFullName(e.target.value)} required
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 focus:outline-none transition-all" />
+              </div>
+            )}
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1.5">E-posta</label>
+              <input type="email" placeholder="ornek@email.com" value={email} onChange={e => setEmail(e.target.value)} required
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 focus:outline-none transition-all" />
+            </div>
+            {mode !== 'reset' && (
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1.5">Şifre</label>
+                <input type="password" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} required
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 focus:outline-none transition-all" />
+              </div>
+            )}
+            {mode === 'login' && (
+              <div className="flex items-center justify-between">
+                <label className="flex items-center gap-2 text-slate-600 text-sm cursor-pointer">
+                  <input type="checkbox" checked={remember} onChange={e => setRemember(e.target.checked)} className="w-4 h-4 rounded border-slate-300 text-sky-500 focus:ring-sky-500" />
+                  Beni hatırla
+                </label>
+                <button type="button" onClick={() => setMode('reset')} className="text-sky-600 text-sm font-medium hover:text-sky-700">Şifremi unuttum</button>
+              </div>
+            )}
+            <button type="submit" disabled={loading} className="w-full py-3 bg-gradient-to-r from-sky-500 to-sky-600 text-white font-semibold rounded-xl hover:from-sky-600 hover:to-sky-700 disabled:opacity-50 transition-all shadow-lg shadow-sky-500/25">
+              {loading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Yükleniyor...
+                </span>
+              ) : mode === 'login' ? 'Giriş Yap' : mode === 'register' ? 'Kayıt Ol' : 'Şifre Sıfırla'}
+            </button>
+          </form>
+
+          <div className="mt-6 text-center text-slate-500 text-sm">
+            {mode === 'login' ? (
+              <>Hesabınız yok mu? <button onClick={() => setMode('register')} className="text-sky-600 font-medium hover:text-sky-700">Kayıt olun</button></>
+            ) : (
+              <>Hesabınız var mı? <button onClick={() => setMode('login')} className="text-sky-600 font-medium hover:text-sky-700">Giriş yapın</button></>
+            )}
+          </div>
         </div>
       </div>
     </div>
