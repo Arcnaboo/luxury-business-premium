@@ -9,22 +9,19 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+import { useEffect } from "react";
 
+
+const Redirect = () => {
+  useEffect(() => {
+    window.location.replace("https://www.westcapitalco.com");
+  }, []);
+
+  return null;
+};
 const App = () => (
-  <ThemeProvider defaultTheme="light">
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  </ThemeProvider>
+  <Redirect />
 );
+
 
 export default App;
